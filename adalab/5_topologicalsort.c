@@ -63,3 +63,26 @@ int main() {
     
     return 0;
 }
+
+/*
+Enter the number of vertices: 5
+Enter the adjacency matrix:
+0 1 1 0 0
+0 0 0 1 0
+0 0 0 0 1
+1 0 0 0 0
+0 0 0 1 0
+
+Topological ordering is not possible. The given graph is cyclic.
+
+Enter the number of vertices: 5
+Enter the adjacency matrix:
+0 1 1 0 0
+0 0 1 1 0
+0 0 0 1 0
+0 0 0 0 0
+0 0 1 1 0
+
+The topological ordering of the vertices is:
+1 2 5 3 4
+*/
