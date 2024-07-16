@@ -68,3 +68,15 @@ int main() {
 
     return 0;
 }
+
+/*
+Enter the number of elements: 10
+
+Original array:
+41 467 334 500 169 724 478 358 962 464
+
+Sorted array:
+41 169 334 358 464 467 478 500 724 962
+
+Time taken: 0.000000 s
+*/
