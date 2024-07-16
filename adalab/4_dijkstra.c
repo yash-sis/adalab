@@ -81,3 +81,26 @@ int main() {
 
     return 0;
 }
+
+/*
+Enter the number of vertices: 5
+Enter the cost adjacency matrix:
+0 3 999 7 999
+999 0 4 2 999
+999 4 0 5 6
+7 2 5 0 4
+999 999 6 4 0
+Enter the source vertex: 1
+Shortest path costs from vertex 1:
+To 1: 0
+To 2: 3
+To 3: 7
+To 4: 5
+To 5: 9
+Shortest group of paths are:
+2 <- 1
+3 <- 2 <- 1
+4 <- 2 <- 1
+5 <- 4 <- 2 <- 1
+Time taken: 0.013000 s
+*/
