@@ -1,19 +1,19 @@
 #include <stdio.h>
 #define INF 999
 
-int prim(int c[20][20], int n, int s) {
-    int ver[20], d[20], v[20] = {0}, sum = 0, min, u;
+int prim(int a[20][20], int n, int s) {
+    int ver[20], d[20], v[20] = {0}, sum = 0, u;
 
     for (int i = 1; i <= n; i++) {
         ver[i] = s;
-        d[i] = c[s][i];
+        d[i] = a[s][i];
     }
     
     v[s] = 1;
 
     printf("\nEdges of spanning tree are :");
-    for (int i = 1; i <= n - 1; i++) {
-        min = INF;
+    for (int i = 1; i < n; i++) {
+        int min = INF;
         
         for (int j = 1; j <= n; j++) {
             if (v[j] == 0 && d[j] < min) {
@@ -28,8 +28,8 @@ int prim(int c[20][20], int n, int s) {
         printf("\n%d -> %d", ver[u], u);
         
         for (int j = 1; j <= n; j++) {
-            if (v[j] == 0 && c[u][j] < d[j]) {
-                d[j] = c[u][j];
+            if (v[j] == 0 && a[u][j] < d[j]) {
+                d[j] = a[u][j];
                 ver[j] = u;
             }
         }
@@ -39,27 +39,26 @@ int prim(int c[20][20], int n, int s) {
 }
 
 int main() {
-    int c[20][20], res, s, n;
+    int a[20][20], n, s;
     
-    printf("Enter the number of vertices: ");
+    printf("Enter the number of nodes: ");
     scanf("%d", &n);
     
     printf("Enter the cost adjacency matrix:\n");
     for (int i = 1; i <= n; i++)
         for (int j = 1; j <= n; j++)
-            scanf("%d", &c[i][j]);
+            scanf("%d", &a[i][j]);
     
     printf("\nEnter the source node: ");
     scanf("%d", &s);
     
-    res = prim(c, n, s);
-    printf("\n\nCost of spanning tree is = %d\n", res);
+    printf("\n\nCost of spanning tree is = %d\n", prim(a, n, s));
     
     return 0;
 }
 
 /*
-Enter the number of vertices: 6
+Enter the number of nodes: 6
 Enter the cost adjacency matrix:
 999 2 1 999 999 999
 2 999 3 5 999 999
@@ -79,3 +78,4 @@ Edges of spanning tree are :
 
 Cost of spanning tree is = 11
 */
+
