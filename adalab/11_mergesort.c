@@ -3,31 +3,27 @@
 #include <time.h>
 
 void merge(int arr[], int left, int mid, int right) {
-    int sizeLeft = mid - left + 1;
-    int sizeRight = right - mid;
+    int i = left;
+    int j = mid + 1;
 
-    int leftArr[sizeLeft], rightArr[sizeRight];
+    int temp[right - left + 1];
+    int k = 0;
 
-    for (int i = 0; i < sizeLeft; i++)
-        leftArr[i] = arr[left + i];
-
-    for (int j = 0; j < sizeRight; j++)
-        rightArr[j] = arr[mid + 1 + j];
-
-    int i = 0, j = 0, k = left;
-
-    while (i < sizeLeft && j < sizeRight) {
-        if (leftArr[i] <= rightArr[j])
-            arr[k++] = leftArr[i++];
+    while (i <= mid && j <= right) {
+        if (arr[i] <= arr[j])
+            temp[k++] = arr[i++];
         else
-            arr[k++] = rightArr[j++];
+            temp[k++] = arr[j++];
     }
 
-    while (i < sizeLeft) 
-        arr[k++] = leftArr[i++];
+    while (i <= mid) 
+        temp[k++] = arr[i++];
 
-    while (j < sizeRight) 
-        arr[k++] = rightArr[j++];
+    while (j <= right) 
+        temp[k++] = arr[j++];
+
+    for (i = left, k = 0; i <= right; i++, k++)
+        arr[i] = temp[k];
 }
 
 void mergeSort(int arr[], int left, int right) {
