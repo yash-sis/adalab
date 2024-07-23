@@ -1,22 +1,21 @@
 #include <stdio.h>
-#include <time.h>
 
-int w[20], subset[20], n, m;
+int set[20], subset[20], n, max;
 
 void sumOfSub(int s, int k, int r) {
     subset[k] = 1;
     
-    if (s + w[k] == m) {
+    if (s + set[k] == max) {
         for (int i = 1; i <= n; i++) 
             printf("%d\t", subset[i]);
         printf("\n");
     } else {
-        if (s + w[k] + w[k + 1] <= m)
-            sumOfSub(s + w[k], k + 1, r - w[k]);
+        if (s + set[k] + set[k + 1] <= max)
+            sumOfSub(s + set[k], k + 1, r - set[k]);
         
-        if (s + r - w[k] >= m && s + w[k + 1] <= m) {
+        if (s + r - set[k] >= max && s + set[k + 1] <= max) {
             subset[k] = 0;
-            sumOfSub(s, k + 1, r - w[k]);
+            sumOfSub(s, k + 1, r - set[k]);
         }
     }
 }
@@ -29,20 +28,16 @@ int main() {
 
     printf("Enter the set elements: ");
     for (int i = 1; i <= n; i++) {
-        scanf("%d", &w[i]);
-        sum += w[i];
+        scanf("%d", &set[i]);
+        sum += set[i];
         subset[i] = 0;
     }
 
     printf("Enter the maximum subset value: ");
-    scanf("%d", &m);
+    scanf("%d", &max);
 
     printf("Solution vectors:\n");
-    clock_t start = clock();
     sumOfSub(0, 1, sum);
-    clock_t end = clock();
-
-    printf("Time taken: %f s\n", (double)(end - start) / CLOCKS_PER_SEC);
 
     return 0;
 }
@@ -54,5 +49,4 @@ Enter the maximum subset value: 9
 Solution vectors:
 1       1       0       1       0
 1       0       0       0       1
-Time taken: 0.001000 s
 */
